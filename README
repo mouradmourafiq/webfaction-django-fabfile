@@ -15,7 +15,6 @@ Fabric
 Makes specific asumptions of the project layout:
 
 requirements.pip file containing python requirements
-setup.py that defines a bin/manage.py (look at linconlnloop startproject for an example)
 
 only supports git repos atm.
 
@@ -24,14 +23,26 @@ Usage
 just drop in your repo or submodule it.
 cp fabsettings.py and adapt to your needs.
 
+1- first: bootstrap the envirement (install pip, virtualenv, virtualenvwrapper)
+   bootstrap
+
 And deploy:
-   fab deploy
+   #create apps & suporvisor, install requirements
+   fab deploy:repos
+   #install static media, reload the app
+   fab deploy:initial
 
 Available commands:
    fab --list 
    fab deploy
    fab deploy:quick
-
+   reload_app #you can reload the app, resync db and restart
+   restart_app #restart the app
+   update_database #update the db
+   install_app
+   install_supervisor
+   install_requirements 
+   install_static_media #if you want to upload media without changing the code
 
 Thanks to David Bennett & Richard Cooper for their excellent tutorials:
 http://www.db-init.com/2010/9/16/going-green
